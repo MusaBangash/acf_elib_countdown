@@ -132,6 +132,19 @@
             flex-wrap: wrap;
         }
 
+        .countdown.active .time-box {
+            min-width: 250px;
+            padding: 60px 50px;
+        }
+
+        .countdown.active .time-value {
+            font-size: 5.5rem;
+        }
+
+        .countdown.active .time-label {
+            font-size: 1.2rem;
+        }
+
         .time-box {
             background: rgba(255, 255, 255, 0.95);
             border-radius: 20px;
@@ -305,18 +318,6 @@
         <p class="countdown-label">Time Until Launch</p>
         <div class="countdown" id="countdown">
             <div class="time-box">
-                <span class="time-value" id="days">00</span>
-                <span class="time-label">Days</span>
-            </div>
-            <div class="time-box">
-                <span class="time-value" id="hours">00</span>
-                <span class="time-label">Hours</span>
-            </div>
-            <div class="time-box">
-                <span class="time-value" id="minutes">00</span>
-                <span class="time-label">Minutes</span>
-            </div>
-            <div class="time-box">
                 <span class="time-value" id="seconds">00</span>
                 <span class="time-label">Seconds</span>
             </div>
@@ -344,8 +345,8 @@
 
         startBtn.addEventListener('click', function() {
             targetDate = new Date().getTime() + (10 * 1000);
-            startBtn.disabled = true;
-            startBtn.textContent = 'Countdown Started';
+            startBtn.style.display = 'none';
+            document.getElementById('countdown').classList.add('active');
             updateCountdown();
             countdownInterval = setInterval(updateCountdown, 1000);
         });
@@ -369,14 +370,7 @@
                 return;
             }
 
-            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
             const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-            document.getElementById('days').textContent = String(days).padStart(2, '0');
-            document.getElementById('hours').textContent = String(hours).padStart(2, '0');
-            document.getElementById('minutes').textContent = String(minutes).padStart(2, '0');
             document.getElementById('seconds').textContent = String(seconds).padStart(2, '0');
         }
     </script>
