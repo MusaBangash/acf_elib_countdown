@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aisha Cahn E-Library - Opening Soon</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: url('bg.jpg') center/cover fixed;
+            background-attachment: fixed;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            overflow: hidden;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url('bg.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            filter: blur(8px);
+            z-index: 0;
+        }
+
+        body::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 52, 204, 0.4);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .container {
+            text-align: center;
+            padding: 60px 40px;
+            max-width: 1000px;
+            width: 95%;
+            position: relative;
+            z-index: 2;
+        }
+
+        .library-icon {
+            font-size: 100px;
+            margin-bottom: 30px;
+            animation: float 4s ease-in-out infinite;
+            filter: drop-shadow(0 10px 25px rgba(0, 52, 153, 0.2));
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-30px) rotate(5deg); }
+        }
+
+        .content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .logo {
+            width: 120px;
+            height: 120px;
+            object-fit: contain;
+            filter: drop-shadow(0 10px 25px rgba(0, 0, 0, 0.3));
+            position: absolute;
+            z-index: 3;
+        }
+
+        .logo-top-left {
+            top: 20px;
+            left: 20px;
+        }
+
+        .logo-bottom-right {
+            top: 20px;
+            right: 20px;
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            margin-bottom: 15px;
+            font-weight: 800;
+            color: white;
+            letter-spacing: -1px;
+            text-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .subtitle {
+            font-size: 1.3rem;
+            margin-bottom: 60px;
+            opacity: 0.9;
+            font-weight: 300;
+            letter-spacing: 0.5px;
+            color: white;
+        }
+
+        .countdown-label {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-bottom: 40px;
+            opacity: 0.85;
+            font-weight: 600;
+            color: white;
+        }
+
+        .countdown {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            margin: 0 0 50px 0;
+            flex-wrap: wrap;
+        }
+
+        .time-box {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 35px 30px;
+            min-width: 130px;
+            border: 3px solid #0052cc;
+            transition: all 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 10px 35px rgba(0, 82, 204, 0.15);
+        }
+
+        .time-box::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(0, 102, 255, 0.05) 0%, transparent 100%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .time-box:hover {
+            transform: translateY(-10px);
+            background: linear-gradient(135deg, #ffffff 0%, #f0f6ff 100%);
+            border-color: #0066ff;
+            box-shadow: 0 20px 40px rgba(0, 82, 204, 0.25);
+        }
+
+        .time-box:hover::before {
+            opacity: 1;
+        }
+
+        .time-value {
+            font-size: 3.8rem;
+            font-weight: 800;
+            display: block;
+            line-height: 1;
+            color: #0052cc;
+            position: relative;
+            z-index: 1;
+        }
+
+        .time-label {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-top: 12px;
+            opacity: 0.8;
+            font-weight: 600;
+            position: relative;
+            z-index: 1;
+            color: #0066ff;
+        }
+
+        .message {
+            font-size: 1.3rem;
+            margin-top: 50px;
+            padding: 30px 40px;
+            background: rgba(255, 255, 255, 0.98);
+            border-radius: 20px;
+            border: 3px solid #0052cc;
+            font-weight: 500;
+            box-shadow: 0 10px 35px rgba(0, 82, 204, 0.15);
+            letter-spacing: 0.3px;
+            color: #003399;
+        }
+
+        .start-button {
+            margin-top: 30px;
+            padding: 18px 60px;
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: white;
+            background: linear-gradient(135deg, #0052cc 0%, #0066ff 100%);
+            border: 2px solid white;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 10px 30px rgba(0, 82, 204, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.3);
+            transition: all 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .start-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: left 0.5s;
+        }
+
+        .start-button:hover {
+            transform: translateY(-4px) scale(1.05);
+            box-shadow: 0 20px 45px rgba(0, 82, 204, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.4);
+            border-color: #ffffff;
+        }
+
+        .start-button:hover::before {
+            left: 100%;
+        }
+
+        .start-button:active {
+            transform: translateY(-2px) scale(1.02);
+            box-shadow: 0 10px 25px rgba(0, 82, 204, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+        }
+
+        .start-button:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+            background: linear-gradient(135deg, #003d99 0%, #004dbf 100%);
+            transform: none;
+        }
+
+        .loading {
+            display: none;
+            margin-top: 40px;
+        }
+
+        .spinner {
+            border: 5px solid rgba(0, 82, 204, 0.2);
+            border-top: 5px solid #0052cc;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            animation: spin 1.2s cubic-bezier(0.68, -0.55, 0.265, 1.55) infinite;
+            margin: 30px auto;
+            box-shadow: 0 0 20px rgba(0, 82, 204, 0.2);
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .loading p {
+            font-size: 1.1rem;
+            margin-top: 20px;
+            font-weight: 500;
+            opacity: 0.95;
+            color: white;
+        }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 2.5rem; }
+            .subtitle { font-size: 1.1rem; }
+            .countdown { gap: 15px; }
+            .time-box { min-width: 100px; padding: 25px 18px; }
+            .time-value { font-size: 2.8rem; }
+            .message { font-size: 1.1rem; padding: 20px 30px; }
+            .library-icon { font-size: 80px; }
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <img src="logo_1.jpeg" alt="Logo 1" class="logo logo-top-left">
+        <img src="logo_2.jpeg" alt="Logo 2" class="logo logo-bottom-right">
+        <div class="content">
+            <h1>Aisha Cahn E-Library</h1>
+        <p class="subtitle">Opening Soon!</p>
+        
+        <p class="countdown-label">Time Until Launch</p>
+        <div class="countdown" id="countdown">
+            <div class="time-box">
+                <span class="time-value" id="days">00</span>
+                <span class="time-label">Days</span>
+            </div>
+            <div class="time-box">
+                <span class="time-value" id="hours">00</span>
+                <span class="time-label">Hours</span>
+            </div>
+            <div class="time-box">
+                <span class="time-value" id="minutes">00</span>
+                <span class="time-label">Minutes</span>
+            </div>
+            <div class="time-box">
+                <span class="time-value" id="seconds">00</span>
+                <span class="time-label">Seconds</span>
+            </div>
+        </div>
+
+        <button id="startBtn" class="start-button">Start Countdown</button>
+
+        <div class="loading" id="loading">
+            <div class="spinner"></div>
+            <p>Redirecting to E-Library...</p>
+        </div>
+        </div>
+    </div>
+
+    <script>
+        // Set your target date and time here
+        // Format: 'Month Day, Year Hour:Minute:Second'
+        // Example: 'December 25, 2025 10:00:00'
+        // Testing: 10 seconds from now
+        let targetDate;
+        let countdownInterval;
+        
+        const libraryURL = 'http://172.31.21.1:8083';
+        const startBtn = document.getElementById('startBtn');
+
+        startBtn.addEventListener('click', function() {
+            targetDate = new Date().getTime() + (10 * 1000);
+            startBtn.disabled = true;
+            startBtn.textContent = 'Countdown Started';
+            updateCountdown();
+            countdownInterval = setInterval(updateCountdown, 1000);
+        });
+
+        function updateCountdown() {
+            const now = new Date().getTime();
+            const distance = targetDate - now;
+
+            if (distance < 0) {
+                // Countdown finished
+                clearInterval(countdownInterval);
+                document.getElementById('countdown').style.display = 'none';
+                document.getElementById('startBtn').style.display = 'none';
+                document.getElementById('loading').style.display = 'block';
+                
+                // Redirect after 2 seconds
+                setTimeout(() => {
+                    window.location.href = libraryURL;
+                }, 2000);
+                
+                return;
+            }
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            document.getElementById('days').textContent = String(days).padStart(2, '0');
+            document.getElementById('hours').textContent = String(hours).padStart(2, '0');
+            document.getElementById('minutes').textContent = String(minutes).padStart(2, '0');
+            document.getElementById('seconds').textContent = String(seconds).padStart(2, '0');
+        }
+    </script>
+</body>
+</html>
