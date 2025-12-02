@@ -138,7 +138,7 @@
         }
 
         .countdown.active .time-value {
-            font-size: 5.5rem;
+            font-size: 12rem;
         }
 
         .countdown.active .time-label {
@@ -146,15 +146,15 @@
         }
 
         .time-box {
-            background: rgba(255, 255, 255, 0.95);
+            background: transparent;
             border-radius: 20px;
             padding: 35px 30px;
             min-width: 130px;
-            border: 3px solid #0052cc;
+            border: none;
             transition: all 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
             position: relative;
             overflow: hidden;
-            box-shadow: 0 10px 35px rgba(0, 82, 204, 0.15);
+            box-shadow: none;
         }
 
         .time-box::before {
@@ -164,16 +164,16 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: linear-gradient(135deg, rgba(0, 102, 255, 0.05) 0%, transparent 100%);
+            background: transparent;
             opacity: 0;
             transition: opacity 0.3s ease;
         }
 
         .time-box:hover {
-            transform: translateY(-10px);
-            background: linear-gradient(135deg, #ffffff 0%, #f0f6ff 100%);
-            border-color: #0066ff;
-            box-shadow: 0 20px 40px rgba(0, 82, 204, 0.25);
+            transform: none;
+            background: transparent;
+            border-color: transparent;
+            box-shadow: none;
         }
 
         .time-box:hover::before {
@@ -185,7 +185,7 @@
             font-weight: 800;
             display: block;
             line-height: 1;
-            color: #0052cc;
+            color: white;
             position: relative;
             z-index: 1;
         }
@@ -199,7 +199,7 @@
             font-weight: 600;
             position: relative;
             z-index: 1;
-            color: #0066ff;
+            color: white;
         }
 
         .message {
@@ -318,7 +318,7 @@
         <p class="countdown-label">Time Until Launch</p>
         <div class="countdown" id="countdown">
             <div class="time-box">
-                <span class="time-value" id="seconds">00</span>
+                <span class="time-value" id="seconds">10</span>
                 <span class="time-label">Seconds</span>
             </div>
         </div>
