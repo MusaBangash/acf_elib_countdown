@@ -75,54 +75,77 @@
         .content {
             position: relative;
             z-index: 2;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 60vh;
+        }
+
+        .button-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            transition: opacity 0.3s ease;
+        }
+
+        .button-container.hidden {
+            display: none;
         }
 
         .logo {
-            width: 120px;
-            height: 120px;
+            width: 100px;
+            height: 100px;
             object-fit: contain;
             filter: drop-shadow(0 10px 25px rgba(0, 0, 0, 0.3));
-            position: absolute;
+            position: relative;
             z-index: 3;
         }
 
         .logo-top-left {
-            top: 20px;
-            left: 20px;
+            top: auto;
+            left: auto;
         }
 
         .logo-bottom-right {
-            top: 20px;
-            right: 20px;
+            top: auto;
+            right: auto;
+        }
+
+        .header-row {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 40px;
+            margin-bottom: 20px;
+            width: 100%;
+        }
+
+        .header-row h1 {
+            margin-bottom: 0;
+            white-space: nowrap;
         }
 
         h1 {
-            font-size: 3.5rem;
-            margin-bottom: 15px;
+            font-size: 5rem;
+            margin-bottom: 10px;
             font-weight: 800;
             color: white;
             letter-spacing: -1px;
-            text-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
         }
 
         .subtitle {
-            font-size: 1.3rem;
+            font-size: 2.2rem;
             margin-bottom: 60px;
-            opacity: 0.9;
-            font-weight: 300;
+            font-weight: 400;
             letter-spacing: 0.5px;
             color: white;
+            white-space: nowrap;
         }
 
-        .countdown-label {
-            font-size: 0.9rem;
-            text-transform: uppercase;
-            letter-spacing: 3px;
-            margin-bottom: 40px;
-            opacity: 0.85;
-            font-weight: 600;
-            color: white;
-        }
+
 
         .countdown {
             display: flex;
@@ -143,6 +166,107 @@
 
         .countdown.active .time-label {
             font-size: 1.2rem;
+        }
+
+        .progress-container {
+            width: 100%;
+            max-width: 600px;
+            height: 80px;
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 40px;
+            overflow: hidden;
+            margin: 50px auto;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+        }
+
+        .progress-bar {
+            height: 100%;
+            width: 100%;
+            background: linear-gradient(90deg, #00ff00 0%, #00dd00 50%, #00bb00 100%);
+            border-radius: 36px;
+            transition: width 0.1s linear;
+            box-shadow: 
+                0 0 40px rgba(0, 255, 0, 0.8),
+                inset 0 1px 0 rgba(255, 255, 255, 0.3),
+                inset 0 -1px 0 rgba(0, 0, 0, 0.2);
+            position: relative;
+        }
+
+        .progress-bar::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.2) 0%, transparent 50%, rgba(0, 0, 0, 0.1) 100%);
+            border-radius: 36px;
+        }
+
+        .progress-segments {
+            display: flex;
+            gap: 8px;
+            padding: 12px;
+            height: 100%;
+            width: 100%;
+        }
+
+        .progress-segment {
+            flex: 1;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 20px;
+            transition: background 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2);
+            background-size: contain;
+            background-position: center;
+            background-repeat: no-repeat;
+            overflow: hidden;
+        }
+
+        .progress-segment.active {
+            box-shadow: 
+                0 0 20px rgba(0, 255, 0, 0.8),
+                inset 0 1px 0 rgba(255, 255, 255, 0.3);
+            background-size: contain;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        #segment1.active {
+            background-image: url('pic_1.jpg');
+        }
+
+        #segment2.active {
+            background-image: url('pic_2.jpg');
+        }
+
+        #segment3.active {
+            background-image: url('pic_3.jpg');
+        }
+
+        #segment4.active {
+            background-image: url('pic_4.jpg');
+        }
+
+        #segment5.active {
+            background-image: url('pic_5.jpg');
+        }
+
+        .timer-display {
+            font-size: 6rem;
+            font-weight: 800;
+            color: white;
+            margin-top: 30px;
+            text-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+            letter-spacing: 10px;
+            transition: font-size 0.3s ease;
+        }
+
+        .timer-display.active {
+            font-size: 24rem;
+            text-shadow: 0 15px 50px rgba(0, 0, 0, 0.5);
         }
 
         .time-box {
@@ -309,21 +433,28 @@
 </head>
 <body>
     <div class="container">
-        <img src="logo_1.jpeg" alt="Logo 1" class="logo logo-top-left">
-        <img src="logo_2.jpeg" alt="Logo 2" class="logo logo-bottom-right">
         <div class="content">
-            <h1>Aisha Cahn E-Library</h1>
-        <p class="subtitle">Opening Soon!</p>
-        
-        <p class="countdown-label">Time Until Launch</p>
-        <div class="countdown" id="countdown">
-            <div class="time-box">
-                <span class="time-value" id="seconds">10</span>
-                <span class="time-label">Seconds</span>
+            <div class="header-row">
+                <img src="logo_1.jpeg" alt="Logo 1" class="logo logo-top-left">
+                <h1>e-Library</h1>
+                <img src="logo_2.jpeg" alt="Logo 2" class="logo logo-bottom-right">
             </div>
+            <p class="subtitle">Aisha Cahn College of Computer Science Design Technology</p>
+        
+        <div class="button-container" id="buttonContainer">
+            <button id="startBtn" class="start-button">Start Countdown</button>
         </div>
 
-        <button id="startBtn" class="start-button">Start Countdown</button>
+        <div class="progress-container" id="progressContainer" style="display: none;">
+            <div class="progress-segments">
+                <div class="progress-segment" id="segment1"></div>
+                <div class="progress-segment" id="segment2"></div>
+                <div class="progress-segment" id="segment3"></div>
+                <div class="progress-segment" id="segment4"></div>
+                <div class="progress-segment" id="segment5"></div>
+            </div>
+        </div>
+        <div class="timer-display" id="timerDisplay" style="display: none;">05</div>
 
         <div class="loading" id="loading">
             <div class="spinner"></div>
@@ -339,16 +470,25 @@
         // Testing: 10 seconds from now
         let targetDate;
         let countdownInterval;
+        const totalDuration = 11000; // 11 seconds in milliseconds
         
         const libraryURL = 'http://172.31.21.1:8083';
         const startBtn = document.getElementById('startBtn');
 
         startBtn.addEventListener('click', function() {
-            targetDate = new Date().getTime() + (11 * 1000);
-            startBtn.style.display = 'none';
-            document.getElementById('countdown').classList.add('active');
-            updateCountdown();
-            countdownInterval = setInterval(updateCountdown, 1000);
+            targetDate = new Date().getTime() + totalDuration;
+            document.getElementById('buttonContainer').classList.add('hidden');
+            document.getElementById('progressContainer').style.display = 'block';
+            document.getElementById('timerDisplay').style.display = 'block';
+            document.getElementById('timerDisplay').classList.add('active');
+            countdownInterval = setInterval(updateCountdown, 100);
+        });
+
+        document.addEventListener('keydown', function(event) {
+            if (event.code === 'Space' && startBtn.style.display !== 'none') {
+                event.preventDefault();
+                startBtn.click();
+            }
         });
 
         function updateCountdown() {
@@ -358,20 +498,44 @@
             if (distance < 0) {
                 // Countdown finished
                 clearInterval(countdownInterval);
-                document.getElementById('countdown').style.display = 'none';
-                document.getElementById('startBtn').style.display = 'none';
-                document.getElementById('loading').style.display = 'block';
                 
-                // Redirect after 2 seconds
+                // Activate all segments
+                for (let i = 1; i <= 5; i++) {
+                    document.getElementById('segment' + i).classList.add('active');
+                }
+                document.getElementById('timerDisplay').textContent = '00';
+                
                 setTimeout(() => {
-                    window.location.href = libraryURL;
-                }, 2000);
+                    document.getElementById('progressContainer').style.display = 'none';
+                    document.getElementById('timerDisplay').style.display = 'none';
+                    document.getElementById('loading').style.display = 'block';
+                    
+                    // Redirect after 2 seconds
+                    setTimeout(() => {
+                        window.location.href = libraryURL;
+                    }, 2000);
+                }, 1000);
                 
                 return;
             }
 
-            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-            document.getElementById('seconds').textContent = String(seconds).padStart(2, '0');
+            const percentComplete = ((totalDuration - distance) / totalDuration) * 100;
+            const segmentToFill = Math.ceil((percentComplete / 100) * 5);
+            
+            // Clear all segments first
+            for (let i = 1; i <= 5; i++) {
+                document.getElementById('segment' + i).classList.remove('active');
+            }
+            
+            // Activate segments up to current percentage
+            for (let i = 1; i <= segmentToFill; i++) {
+                document.getElementById('segment' + i).classList.add('active');
+            }
+            
+            // Update timer display: 05, 04, 03, 02, 01
+            const timers = ['05', '04', '03', '02', '01'];
+            const timerIndex = segmentToFill - 1;
+            document.getElementById('timerDisplay').textContent = timers[timerIndex] || '05';
         }
     </script>
 </body>
